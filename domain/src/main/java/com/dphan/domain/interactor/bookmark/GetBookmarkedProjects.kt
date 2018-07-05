@@ -1,0 +1,18 @@
+package com.dphan.domain.interactor.bookmark
+
+import com.dphan.domain.executor.PostExecutionThread
+import com.dphan.domain.interactor.ObservableUseCase
+import com.dphan.domain.model.Project
+import com.dphan.domain.repository.ProjectsRepository
+import io.reactivex.Observable
+import javax.inject.Inject
+
+class GetBookmarkedProjects @Inject constructor(
+        private val projectsRepository: ProjectsRepository,
+        postExecutionThread: PostExecutionThread)
+    : ObservableUseCase<List<Project>, Nothing>(postExecutionThread) {
+    
+    override fun buildUseCaseObservable(params: Nothing?): Observable<List<Project>> {
+        return projectsRepository.getBookmarkedProjects()
+    }
+}
