@@ -17,7 +17,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import java.util.concurrent.CountedCompleter
 
 @RunWith(JUnit4::class)
 class ProjectsDataRepositoryTest {
@@ -28,7 +27,8 @@ class ProjectsDataRepositoryTest {
     private val cache = mock<ProjectsCache>()
     private val repository = ProjectsDataRepository(mapper, cache, factory)
 
-    @Before fun setup() {
+    @Before
+    fun setup() {
         stubFactoryGetDataStore()
         stubFactoryGetCacheDataStore()
         stubIsCacheExpired(Single.just(false))
@@ -36,7 +36,8 @@ class ProjectsDataRepositoryTest {
         stubSaveProjects(Completable.complete())
     }
 
-    @Test fun getProjectsCompletes() {
+    @Test
+    fun getProjectsCompletes() {
         stubGetProjects(Observable.just(listOf(ProjectFactory.makeProjectEntity())))
         stubMapper(ProjectFactory.makeProject(), any())
 
