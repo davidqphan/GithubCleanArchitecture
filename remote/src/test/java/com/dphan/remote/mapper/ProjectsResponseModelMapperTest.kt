@@ -12,7 +12,7 @@ class ProjectsResponseModelMapperTest {
     private val mapper = ProjectsResponseModelMapper()
 
     @Test
-fun mapFromModelMapsData() {
+    fun mapFromModelMapsData() {
         val model = ProjectDataFactory.makeProject()
         val entity = mapper.mapFromModel(model)
 
