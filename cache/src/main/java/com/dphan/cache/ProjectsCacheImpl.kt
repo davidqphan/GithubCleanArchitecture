@@ -8,12 +8,12 @@ import com.dphan.data.repository.ProjectsCache
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.rxkotlin.toSingle
 import javax.inject.Inject
 
 class ProjectsCacheImpl @Inject constructor(
         private val projectsDatabase: ProjectsDatabase,
-        private val mapper: CachedProjectMapper) : ProjectsCache {
+        private val mapper: CachedProjectMapper)
+    : ProjectsCache {
 
     override fun clearProjects(): Completable {
         return Completable.defer {
@@ -62,7 +62,9 @@ class ProjectsCacheImpl @Inject constructor(
 
     override fun areProjectsCached(): Single<Boolean> {
         return projectsDatabase.cachedProjectsDao().getProjects().isEmpty
-                .map { !it }
+                .map {
+                    !it
+                }
     }
 
     override fun setLastCacheTime(lastCache: Long): Completable {
@@ -76,7 +78,7 @@ class ProjectsCacheImpl @Inject constructor(
         val currentTime = System.currentTimeMillis()
         val expirationTime = (60 * 10 * 1000).toLong()
         return projectsDatabase.configDao().getConfig()
-                .toSingle()
+                .single(Config(lastCacheTime = 0))
                 .map {
                     currentTime - it.lastCacheTime > expirationTime
                 }

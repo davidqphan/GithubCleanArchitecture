@@ -15,9 +15,11 @@ import io.reactivex.Flowable
 abstract class CachedProjectsDao {
 
     @Query(QUERY_PROJECTS)
+    @JvmSuppressWildcards
     abstract fun getProjects(): Flowable<List<CachedProject>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @JvmSuppressWildcards
     abstract fun insertProjects(projects: List<CachedProject>)
 
     @Query(DELETE_PROJECTS)
@@ -27,6 +29,7 @@ abstract class CachedProjectsDao {
     abstract fun getBookmarkedProjects(): Flowable<List<CachedProject>>
 
     @Query(QUERY_UPDATE_BOOKMARK_STATUS)
-    abstract fun setBookmarkStatus(isBookmarked: Boolean, projectId: String)
+    abstract fun setBookmarkStatus(isBookmarked: Boolean,
+                                   projectId: String)
 
 }

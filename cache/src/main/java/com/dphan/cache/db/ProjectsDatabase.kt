@@ -10,8 +10,9 @@ import com.dphan.cache.model.CachedProject
 import com.dphan.cache.model.Config
 import javax.inject.Inject
 
-@Database(entities = arrayOf(CachedProject::class, Config::class), version = 1)
-abstract class ProjectsDatabase @Inject constructor() : RoomDatabase() {
+@Database(entities = arrayOf(CachedProject::class,
+        Config::class), version = 1)
+abstract class ProjectsDatabase @Inject constructor(): RoomDatabase() {
 
     abstract fun cachedProjectsDao(): CachedProjectsDao
 
@@ -33,4 +34,5 @@ abstract class ProjectsDatabase @Inject constructor() : RoomDatabase() {
         }
         return INSTANCE as ProjectsDatabase
     }
+
 }
