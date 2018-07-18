@@ -20,4 +20,8 @@ open class ProjectsDataStoreFactory @Inject constructor(
         return projectsCacheDataStore
     }
 
+    open fun getRemoteDataStore(): ProjectsDataStore {
+        return projectsRemoteDataStore
+    }
+
 }
