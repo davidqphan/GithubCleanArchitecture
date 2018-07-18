@@ -1,8 +1,9 @@
 package com.dphan.mobileui.injection.module
 
 import com.dphan.domain.executor.PostExecutionThread
-import com.dphan.mobileui.BrowseActivity
 import com.dphan.mobileui.UiThread
+import com.dphan.mobileui.bookmarked.BookmarkedActivity
+import com.dphan.mobileui.browse.BrowseActivity
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -16,4 +17,6 @@ abstract class UiModule {
     @ContributesAndroidInjector
     abstract fun contributesBrowseActivity(): BrowseActivity
 
+    @ContributesAndroidInjector
+    abstract fun contributesBookmarkedActivity(): BookmarkedActivity
 }
