@@ -8,7 +8,7 @@ ext {
     kotlinVersion = '1.2.41'
 
     // Libraries
-    supportLibraryVersion = '26.1.0'
+    supportLibraryVersion = '27.1.0'
     rxJavaVersion = '2.0.2'
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
@@ -20,7 +20,6 @@ ext {
     gsonVersion = '2.8.1'
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
-    supportLibraryVersion = '26.1.0'
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
     daggerVersion = '2.16'

@@ -5,13 +5,12 @@ apply plugin: 'kotlin-kapt'
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    compileSdkVersion 27
     buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
 
     defaultConfig {
         minSdkVersion globalConfiguration["androidMinSdkVersion"]
         targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
-        testInstrumentationRunner "co.joebirch.mobile_ui.test.TestRunner"
     }
 
     buildTypes {
@@ -32,15 +31,12 @@ android {
 dependencies {
     def mobileUiDependencies = rootProject.ext.mobileUiDependencies
     def mobileUiTestDependencies = rootProject.ext.mobileUiTestDependencies
-
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation project(':presentation')
     implementation project(':data')
     implementation project(':remote')
     implementation project(':cache')
-
     implementation mobileUiDependencies.javaxAnnotation
-
     implementation mobileUiDependencies.kotlin
     implementation mobileUiDependencies.javaxInject
     implementation mobileUiDependencies.rxKotlin
@@ -55,18 +51,14 @@ dependencies {
     implementation mobileUiDependencies.glide
     implementation mobileUiDependencies.dagger
     implementation mobileUiDependencies.daggerSupport
-
     implementation presentationDependencies.archRuntime
     implementation presentationDependencies.archExtensions
-    implementation "android.arch.persistence.room:rxjava2:1.0.0"
+    implementation 'android.arch.persistence.room:rxjava2:1.0.0'
     kapt presentationDependencies.archCompiler
-
     testImplementation mobileUiTestDependencies.kotlinJUnit
-
     kapt mobileUiDependencies.daggerCompiler
     kapt mobileUiDependencies.daggerProcessor
     compileOnly mobileUiDependencies.glassfishAnnotation
-
     // Instrumentation test dependencies
     androidTestImplementation mobileUiTestDependencies.junit
     androidTestImplementation mobileUiTestDependencies.mockito
@@ -92,7 +84,6 @@ dependencies {
         exclude module: 'recyclerview-v7'
         exclude module: 'design'
     }
-
     kaptTest mobileUiDependencies.daggerCompiler
     kaptAndroidTest mobileUiDependencies.daggerCompiler
 }
