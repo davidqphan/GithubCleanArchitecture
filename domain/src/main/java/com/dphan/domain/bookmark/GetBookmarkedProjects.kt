@@ -1,7 +1,7 @@
 package com.dphan.domain.bookmark
 
 import com.dphan.domain.executor.PostExecutionThread
-import com.dphan.domain.interactor.ObservableUseCase
+import com.dphan.domain.ObservableUseCase
 import com.dphan.domain.model.Project
 import com.dphan.domain.repository.ProjectsRepository
 import io.reactivex.Observable

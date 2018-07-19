@@ -11,5 +11,4 @@ open class ProjectViewMapper @Inject constructor() : Mapper<ProjectView, Project
                 type.starCount, type.dateCreated, type.ownerName,
                 type.ownerAvatar, type.isBookmarked)
     }
-
 }

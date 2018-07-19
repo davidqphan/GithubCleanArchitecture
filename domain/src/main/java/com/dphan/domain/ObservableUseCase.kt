@@ -1,4 +1,4 @@
-package com.dphan.domain.interactor
+package com.dphan.domain
 
 import com.dphan.domain.executor.PostExecutionThread
 import io.reactivex.Observable

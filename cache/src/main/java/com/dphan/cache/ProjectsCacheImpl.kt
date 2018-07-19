@@ -77,7 +77,6 @@ class ProjectsCacheImpl @Inject constructor(
         val expirationTime = (60 * 10 * 1000).toLong()
         return projectsDatabase.configDao().getConfig()
                 .onErrorReturn { Config(lastCacheTime = 0) }
-                .single(Config(lastCacheTime = 0))
                 .map {
                     currentTime - it.lastCacheTime > expirationTime
                 }
