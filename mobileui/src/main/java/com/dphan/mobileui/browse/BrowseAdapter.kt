@@ -12,13 +12,14 @@ import com.dphan.mobileui.R
 import com.dphan.mobileui.model.Project
 import javax.inject.Inject
 
-class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
+class BrowseAdapter @Inject constructor(): RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
 
     var projects: List<Project> = arrayListOf()
     var projectListener: ProjectListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemView = LayoutInflater
+                .from(parent.context)
                 .inflate(R.layout.item_project, parent, false)
         return ViewHolder(itemView)
     }
@@ -27,10 +28,9 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
         return projects.count()
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val project = projects[position]
-
-        holder?.ownerNameText!!.text = project.ownerName
+        holder.ownerNameText.text = project.ownerName
         holder.projectNameText.text = project.fullName
 
         Glide.with(holder.itemView.context)
@@ -52,11 +52,9 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
                 projectListener?.onProjectClicked(project.id)
             }
         }
-
     }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         var avatarImage: ImageView
         var ownerNameText: TextView
         var projectNameText: TextView
@@ -68,7 +66,6 @@ class BrowseAdapter @Inject constructor() : RecyclerView.Adapter<BrowseAdapter.V
             projectNameText = view.findViewById(R.id.text_project_name)
             bookmarkedImage = view.findViewById(R.id.image_bookmarked)
         }
-
     }
 
 }

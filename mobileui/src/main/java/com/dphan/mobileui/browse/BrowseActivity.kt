@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.dphan.mobileui.R
@@ -24,12 +25,9 @@ import javax.inject.Inject
 
 class BrowseActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var browseAdapter: BrowseAdapter
-    @Inject
-    lateinit var mapper: ProjectViewMapper
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    @Inject lateinit var browseAdapter: BrowseAdapter
+    @Inject lateinit var mapper: ProjectViewMapper
+    @Inject lateinit var viewModelFactory: ViewModelFactory
     private lateinit var browseViewModel: BrowseProjectsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,18 +81,18 @@ class BrowseActivity : AppCompatActivity() {
                 })
             }
             ResourceState.LOADING -> {
-                progress.visibility = VISIBLE
-                recycler_projects.visibility = GONE
+                progress.visibility = View.VISIBLE
+                recycler_projects.visibility = View.GONE
             }
         }
     }
 
     private fun setupScreenForSuccess(projects: List<Project>?) {
-        progress.visibility = GONE
+        progress.visibility = View.GONE
         projects?.let {
             browseAdapter.projects = it
             browseAdapter.notifyDataSetChanged()
-            recycler_projects.visibility = VISIBLE
+            recycler_projects.visibility = View.VISIBLE
         } ?: run {
 
         }
