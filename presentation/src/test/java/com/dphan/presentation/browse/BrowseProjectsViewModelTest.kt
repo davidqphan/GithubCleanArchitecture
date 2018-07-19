@@ -1,9 +1,9 @@
 package com.dphan.presentation.browse
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dphan.domain.interactor.bookmark.BookmarkProject
-import com.dphan.domain.interactor.bookmark.UnbookmarkProject
-import com.dphan.domain.interactor.browse.GetProjects
+import com.dphan.domain.bookmark.BookmarkProject
+import com.dphan.domain.bookmark.UnbookmarkProject
+import com.dphan.domain.browse.GetProjects
 import com.dphan.domain.model.Project
 import com.dphan.presentation.BrowseProjectsViewModel
 import com.dphan.presentation.mapper.ProjectViewMapper

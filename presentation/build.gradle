@@ -31,6 +31,7 @@ android {
         exclude 'META-INF/ASL2.0'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
+        exclude 'META-INF/main.kotlin_module'
     }
 
     lintOptions {
@@ -61,7 +62,7 @@ dependencies {
     def presentationDependencies = rootProject.ext.presentationDependencies
     def presentationTestDependencies = rootProject.ext.presentationTestDependencies
 
-    implementation project(':domain')
+    compile project(':domain')
 
     implementation presentationDependencies.kotlin
     implementation presentationDependencies.javaxInject

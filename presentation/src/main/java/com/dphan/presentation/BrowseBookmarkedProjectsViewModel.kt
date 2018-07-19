@@ -3,7 +3,7 @@ package com.dphan.presentation
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.dphan.domain.interactor.bookmark.GetBookmarkedProjects
+import com.dphan.domain.bookmark.GetBookmarkedProjects
 import com.dphan.domain.model.Project
 import com.dphan.presentation.mapper.ProjectViewMapper
 import com.dphan.presentation.model.ProjectView
@@ -16,15 +16,16 @@ class BrowseBookmarkedProjectsViewModel @Inject constructor(
         private val getBookmarkedProjects: GetBookmarkedProjects,
         private val mapper: ProjectViewMapper) : ViewModel() {
 
-    private val liveData: MutableLiveData<Resource<List<ProjectView>>> = MutableLiveData()
-
-    fun getProjects(): LiveData<Resource<List<ProjectView>>> {
-        return liveData
-    }
+    private val liveData: MutableLiveData<Resource<List<ProjectView>>> =
+            MutableLiveData()
 
     override fun onCleared() {
         getBookmarkedProjects.dispose()
         super.onCleared()
+    }
+
+    fun getProjects(): LiveData<Resource<List<ProjectView>>> {
+        return liveData
     }
 
     fun fetchProjects() {
@@ -33,18 +34,17 @@ class BrowseBookmarkedProjectsViewModel @Inject constructor(
     }
 
     inner class ProjectsSubscriber : DisposableObserver<List<Project>>() {
-        override fun onComplete() {
-        }
-
         override fun onNext(t: List<Project>) {
-            val projectView = t.map { mapper.mapToView(it) }
-            liveData.postValue(Resource(ResourceState.SUCCESS, projectView, null))
+            liveData.postValue(Resource(ResourceState.SUCCESS,
+                    t.map { mapper.mapToView(it) }, null))
         }
 
         override fun onError(e: Throwable) {
-            val errorMessage = e.localizedMessage
-            liveData.postValue(Resource(ResourceState.ERROR, null, errorMessage))
+            liveData.postValue(Resource(ResourceState.ERROR, null,
+                    e.localizedMessage))
         }
+
+        override fun onComplete() {}
 
     }
 

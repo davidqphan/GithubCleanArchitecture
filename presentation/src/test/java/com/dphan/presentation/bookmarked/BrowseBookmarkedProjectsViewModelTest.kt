@@ -1,7 +1,7 @@
 package com.dphan.presentation.bookmarked
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dphan.domain.interactor.bookmark.GetBookmarkedProjects
+import com.dphan.domain.bookmark.GetBookmarkedProjects
 import com.dphan.domain.model.Project
 import com.dphan.presentation.BrowseBookmarkedProjectsViewModel
 import com.dphan.presentation.mapper.ProjectViewMapper
