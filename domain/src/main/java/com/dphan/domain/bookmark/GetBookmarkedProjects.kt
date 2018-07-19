@@ -1,4 +1,4 @@
-package com.dphan.domain.interactor.browse
+package com.dphan.domain.bookmark
 
 import com.dphan.domain.executor.PostExecutionThread
 import com.dphan.domain.interactor.ObservableUseCase
@@ -7,13 +7,12 @@ import com.dphan.domain.repository.ProjectsRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 
-open class GetProjects @Inject constructor(
+open class GetBookmarkedProjects @Inject constructor(
         private val projectsRepository: ProjectsRepository,
         postExecutionThread: PostExecutionThread)
     : ObservableUseCase<List<Project>, Nothing?>(postExecutionThread) {
-
+    
     public override fun buildUseCaseObservable(params: Nothing?): Observable<List<Project>> {
-        return projectsRepository.getProjects()
+        return projectsRepository.getBookmarkedProjects()
     }
-
 }

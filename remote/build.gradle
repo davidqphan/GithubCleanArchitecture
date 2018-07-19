@@ -4,7 +4,7 @@ dependencies {
     def remoteDependencies = rootProject.ext.remoteDependencies
     def remoteTestDependencies = rootProject.ext.remoteTestDependencies
 
-    implementation project(':data')
+    compile project(':data')
 
     implementation remoteDependencies.javaxAnnotation
     implementation remoteDependencies.kotlin
@@ -17,11 +17,11 @@ dependencies {
     implementation remoteDependencies.retrofitConverter
     implementation remoteDependencies.retrofitAdapter
 
-    testImplementation remoteTestDependencies.junit
-    testImplementation remoteTestDependencies.kotlinJUnit
-    testImplementation remoteTestDependencies.mockito
-    testImplementation remoteTestDependencies.assertj
+    implementation remoteTestDependencies.junit
+    implementation remoteTestDependencies.kotlinJUnit
+    implementation remoteTestDependencies.mockito
+    implementation remoteTestDependencies.assertj
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

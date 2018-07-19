@@ -11,45 +11,44 @@ import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class ProjectsDataRepository @Inject constructor(
-        private val projectMapper: ProjectMapper,
-        private val projectsCache: ProjectsCache,
-        private val projectsDataStoreFactory: ProjectsDataStoreFactory)
+        private val mapper: ProjectMapper,
+        private val cache: ProjectsCache,
+        private val factory: ProjectsDataStoreFactory)
     : ProjectsRepository {
 
     override fun getProjects(): Observable<List<Project>> {
-        return Observable.zip(projectsCache.areProjectsCached().toObservable(),
-                projectsCache.isProjectsCacheExpired().toObservable(),
+        return Observable.zip(cache.areProjectsCached().toObservable(),
+                cache.isProjectsCacheExpired().toObservable(),
                 BiFunction<Boolean, Boolean, Pair<Boolean, Boolean>> { areCached, isExpired ->
                     Pair(areCached, isExpired)
                 })
                 .flatMap {
-                    projectsDataStoreFactory.getDataStore(it.first, it.second).getProjects()
+                    factory.getDataStore(it.first, it.second).getProjects().toObservable()
+                            .distinctUntilChanged()
                 }
                 .flatMap { projects ->
-                    projectsDataStoreFactory.getCacheDataStore()
+                    factory.getCacheDataStore()
                             .saveProjects(projects)
                             .andThen(Observable.just(projects))
                 }
                 .map {
                     it.map {
-                        projectMapper.mapFromEntity(it)
+                        mapper.mapFromEntity(it)
                     }
                 }
     }
 
     override fun bookmarkProject(projectId: String): Completable {
-        return projectsDataStoreFactory.getCacheDataStore().setProjectAsBookmarked(projectId)
+        return factory.getCacheDataStore().setProjectAsBookmarked(projectId)
     }
 
     override fun unbookmarkProject(projectId: String): Completable {
-        return projectsDataStoreFactory.getCacheDataStore().setProjectAsNotBookmarked(projectId)
+        return factory.getCacheDataStore().setProjectAsNotBookmarked(projectId)
     }
 
     override fun getBookmarkedProjects(): Observable<List<Project>> {
-        return projectsDataStoreFactory.getCacheDataStore().getBookmarkedProjects()
-                .map {
-                    it.map { projectMapper.mapFromEntity(it) }
-                }
+        return factory.getCacheDataStore().getBookmarkedProjects().toObservable()
+                .map { it.map { mapper.mapFromEntity(it) } }
     }
 
 }

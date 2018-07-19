@@ -1,14 +1,14 @@
 ext {
 
     // Android
-    androidBuildToolsVersion = '26.0.0'
+    androidBuildToolsVersion = "27.0.3"
     androidMinSdkVersion = 21
-    androidTargetSdkVersion = 27
-    androidCompileSdkVersion = 27
-    kotlinVersion = '1.2.41'
+    androidTargetSdkVersion = 26
+    androidCompileSdkVersion = 26
+    kotlinVersion = '1.2.10'
 
     // Libraries
-    supportLibraryVersion = '27.1.0'
+    supportLibraryVersion = '26.1.0'
     rxJavaVersion = '2.0.2'
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
@@ -20,9 +20,10 @@ ext {
     gsonVersion = '2.8.1'
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
+    supportLibraryVersion = '26.1.0'
     timberVersion = '4.5.1'
     glideVersion = '4.0.0'
-    daggerVersion = '2.16'
+    daggerVersion = '2.11'
     glassfishAnnotationVersion = '10.0-b28'
     archCompVersion = '1.1.1'
     roomVersion = '1.0.0'
@@ -41,30 +42,30 @@ ext {
     runnerVersion = '0.5'
 
     domainDependencies = [
-            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
-            rxJava: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}"
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava:             "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}"
     ]
 
     domainTestDependencies = [
-            junit: "junit:junit:${jUnitVersion}",
-            assertj: "org.assertj:assertj-core:${assertJVersion}",
-            mockito: "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}"
+            junit:              "junit:junit:${jUnitVersion}",
+            mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj:            "org.assertj:assertj-core:${assertJVersion}"
     ]
 
     dataDependencies = [
-            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
-            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}",
-            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}"
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
     ]
 
     dataTestDependencies = [
-            junit: "junit:junit:${jUnitVersion}",
-            assertj: "org.assertj:assertj-core:${assertJVersion}",
-            mockito: "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
-            kotlinJUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
-            robolectric: "org.robolectric:${robolectricVersion}"
+            junit:              "junit:junit:${jUnitVersion}",
+            kotlinJUnit:        "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
+            assertj:            "org.assertj:assertj-core:${assertJVersion}",
+            mockito:            "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            robolectric:        "org.robolectric:robolectric:${robolectricVersion}"
     ]
 
     cacheDependencies = [
@@ -75,6 +76,7 @@ ext {
             kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
             roomRuntime:        "android.arch.persistence.room:runtime:${roomVersion}",
             roomCompiler:       "android.arch.persistence.room:compiler:${roomVersion}",
             roomRxJava:         "android.arch.persistence.room:rxjava2:${roomVersion}"
@@ -89,8 +91,7 @@ ext {
             roomTesting:        "android.arch.persistence.room:testing:${roomVersion}",
             archTesting:        "android.arch.core:core-testing:${archCompVersion}",
             supportRunner:      "com.android.support.test:runner:${androidSupportRunnerVersion}",
-            supportRules:       "com.android.support.test:rules:${androidSupportRulesVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}"
+            supportRules:       "com.android.support.test:rules:${androidSupportRulesVersion}"
     ]
 
     remoteDependencies = [
@@ -175,5 +176,4 @@ ext {
             androidRunner:      "com.android.support.test:runner:${runnerVersion}",
             androidRules:       "com.android.support.test:rules:${runnerVersion}"
     ]
-
 }

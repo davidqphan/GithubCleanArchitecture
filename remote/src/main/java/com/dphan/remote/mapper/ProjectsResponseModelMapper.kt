@@ -4,7 +4,7 @@ import com.dphan.data.model.ProjectEntity
 import com.dphan.remote.model.ProjectModel
 import javax.inject.Inject
 
-open class ProjectsResponseModelMapper @Inject constructor(): ModelMapper<ProjectModel, ProjectEntity> {
+class ProjectsResponseModelMapper @Inject constructor(): ModelMapper<ProjectModel, ProjectEntity> {
 
     override fun mapFromModel(model: ProjectModel): ProjectEntity {
         return ProjectEntity(model.id, model.name, model.fullName, model.starCount.toString(),

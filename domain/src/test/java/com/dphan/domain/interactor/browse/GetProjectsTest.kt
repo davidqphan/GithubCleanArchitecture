@@ -1,5 +1,6 @@
 package com.dphan.domain.interactor.browse
 
+import com.dphan.domain.browse.GetProjects
 import com.dphan.domain.executor.PostExecutionThread
 import com.dphan.domain.model.Project
 import com.dphan.domain.repository.ProjectsRepository

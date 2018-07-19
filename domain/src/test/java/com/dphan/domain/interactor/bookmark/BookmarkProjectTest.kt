@@ -1,5 +1,6 @@
 package com.dphan.domain.interactor.bookmark
 
+import com.dphan.domain.bookmark.BookmarkProject
 import com.dphan.domain.executor.PostExecutionThread
 import com.dphan.domain.repository.ProjectsRepository
 import com.dphan.domain.test.ProjectDataFactory

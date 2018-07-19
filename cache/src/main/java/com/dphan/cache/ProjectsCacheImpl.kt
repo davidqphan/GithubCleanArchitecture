@@ -6,7 +6,7 @@ import com.dphan.cache.model.Config
 import com.dphan.data.model.ProjectEntity
 import com.dphan.data.repository.ProjectsCache
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -30,17 +30,15 @@ class ProjectsCacheImpl @Inject constructor(
         }
     }
 
-    override fun getProjects(): Observable<List<ProjectEntity>> {
+    override fun getProjects(): Flowable<List<ProjectEntity>> {
         return projectsDatabase.cachedProjectsDao().getProjects()
-                .toObservable()
                 .map {
                     it.map { mapper.mapFromCached(it) }
                 }
     }
 
-    override fun getBookmarkedProjects(): Observable<List<ProjectEntity>> {
+    override fun getBookmarkedProjects(): Flowable<List<ProjectEntity>> {
         return projectsDatabase.cachedProjectsDao().getBookmarkedProjects()
-                .toObservable()
                 .map {
                     it.map { mapper.mapFromCached(it) }
                 }
@@ -78,6 +76,7 @@ class ProjectsCacheImpl @Inject constructor(
         val currentTime = System.currentTimeMillis()
         val expirationTime = (60 * 10 * 1000).toLong()
         return projectsDatabase.configDao().getConfig()
+                .onErrorReturn { Config(lastCacheTime = 0) }
                 .single(Config(lastCacheTime = 0))
                 .map {
                     currentTime - it.lastCacheTime > expirationTime

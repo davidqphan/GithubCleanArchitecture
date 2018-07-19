@@ -4,14 +4,14 @@ import com.dphan.data.model.ProjectEntity
 import com.dphan.data.repository.ProjectsCache
 import com.dphan.data.repository.ProjectsDataStore
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import javax.inject.Inject
-import kotlin.math.hypot
 
 open class ProjectsCacheDataStore @Inject constructor(
-        private val projectsCache: ProjectsCache): ProjectsDataStore {
+        private val projectsCache: ProjectsCache)
+    : ProjectsDataStore {
 
-    override fun getProjects(): Observable<List<ProjectEntity>> {
+    override fun getProjects(): Flowable<List<ProjectEntity>> {
         return projectsCache.getProjects()
     }
 
@@ -24,7 +24,7 @@ open class ProjectsCacheDataStore @Inject constructor(
         return projectsCache.clearProjects()
     }
 
-    override fun getBookmarkedProjects(): Observable<List<ProjectEntity>> {
+    override fun getBookmarkedProjects(): Flowable<List<ProjectEntity>> {
         return projectsCache.getBookmarkedProjects()
     }
 
@@ -35,4 +35,5 @@ open class ProjectsCacheDataStore @Inject constructor(
     override fun setProjectAsNotBookmarked(projectId: String): Completable {
         return projectsCache.setProjectAsNotBookmarked(projectId)
     }
+
 }
