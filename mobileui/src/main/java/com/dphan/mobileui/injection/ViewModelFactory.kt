@@ -18,7 +18,6 @@ open class ViewModelFactory : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         var creator: Provider<out ViewModel>? = creators[modelClass]
-
         if (creator == null) {
             for ((key, value) in creators) {
                 if (modelClass.isAssignableFrom(key)) {
@@ -27,11 +26,9 @@ open class ViewModelFactory : ViewModelProvider.Factory {
                 }
             }
         }
-
         if (creator == null) {
             throw IllegalStateException("Unknown model class: " + modelClass)
         }
-
         try {
             return creator.get() as T
         } catch (e: Exception) {
