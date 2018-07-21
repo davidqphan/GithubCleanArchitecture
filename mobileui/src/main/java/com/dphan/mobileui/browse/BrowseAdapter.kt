@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dphan.mobileui.R
 import com.dphan.mobileui.model.Project
+import timber.log.Timber
 import javax.inject.Inject
 
 class BrowseAdapter @Inject constructor(): RecyclerView.Adapter<BrowseAdapter.ViewHolder>() {
@@ -45,10 +46,12 @@ class BrowseAdapter @Inject constructor(): RecyclerView.Adapter<BrowseAdapter.Vi
         }
         holder.bookmarkedImage.setImageResource(starResource)
 
-        holder.itemView.setOnClickListener {
+        holder.bookmarkedImage.setOnClickListener {
             if (project.isBookmarked) {
+                Timber.d("onBookmarkedProjectClicked")
                 projectListener?.onBookmarkedProjectClicked(project.id)
             } else {
+                Timber.d("onProjectClicked")
                 projectListener?.onProjectClicked(project.id)
             }
         }
